@@ -19,15 +19,19 @@ const PROVA_DIR = join(process.cwd(), "public", "fonts", "prova");
 
 function status(c: Candidate) {
   if (c.source === "google") return { available: true, family: GOOGLE[c.id] };
-  const available = !!c.file && existsSync(join(PROVA_DIR, c.file));
+  const available = !!c.files?.length && c.files.every((f) => existsSync(join(PROVA_DIR, f.name)));
   return { available, family: `"Prova ${c.family}"` };
 }
 
+const FORMAT: Record<string, string> = { woff2: "woff2", woff: "woff", otf: "opentype", ttf: "truetype" };
+
 function fontFaces(): string {
-  return CANDIDATES.filter((c) => c.file && status(c).available)
-    .map(
-      (c) =>
-        `@font-face{font-family:"Prova ${c.family}";src:url("/fonts/prova/${c.file}") format("woff2");font-weight:100 900;font-display:swap}`,
+  return CANDIDATES.filter((c) => status(c).available)
+    .flatMap((c) =>
+      (c.files ?? []).map((f) => {
+        const format = FORMAT[f.name.split(".").pop() ?? ""] ?? "woff2";
+        return `@font-face{font-family:"Prova ${c.family}";src:url("/fonts/prova/${f.name}") format("${format}");font-weight:${f.weight};font-display:swap}`;
+      }),
     )
     .join("\n");
 }
@@ -154,7 +158,7 @@ export default function FontProofPage() {
                     ) : (
                       <span className="st urze">
                         <i aria-hidden />
-                        falta {c.file}
+                        falta {c.files?.map((f) => f.name).join(", ")}
                       </span>
                     )}
                   </td>

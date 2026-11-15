@@ -17,8 +17,8 @@ export type Candidate = {
   foundry: string;
   license: string;
   source: "fontshare" | "google" | "github";
-  /** Arquivo esperado em public/fonts/prova/ (fontes que não vêm do next/font/google). */
-  file?: string;
+  /** Arquivos esperados em public/fonts/prova/ (fontes que não vêm do next/font/google). */
+  files?: { name: string; weight: string }[];
   download: string;
 };
 
@@ -29,7 +29,7 @@ export const CANDIDATES: Candidate[] = [
     foundry: "Indian Type Foundry",
     license: "ITF Free Font License",
     source: "fontshare",
-    file: "ClashDisplay-Variable.woff2",
+    files: [{ name: "ClashDisplay-Variable.woff2", weight: "100 900" }],
     download: "https://www.fontshare.com/fonts/clash-display",
   },
   {
@@ -38,7 +38,7 @@ export const CANDIDATES: Candidate[] = [
     foundry: "Indian Type Foundry",
     license: "ITF Free Font License",
     source: "fontshare",
-    file: "CabinetGrotesk-Variable.woff2",
+    files: [{ name: "CabinetGrotesk-Variable.woff2", weight: "100 900" }],
     download: "https://www.fontshare.com/fonts/cabinet-grotesk",
   },
   {
@@ -55,7 +55,7 @@ export const CANDIDATES: Candidate[] = [
     foundry: "Indian Type Foundry",
     license: "ITF Free Font License",
     source: "fontshare",
-    file: "GeneralSans-Variable.woff2",
+    files: [{ name: "GeneralSans-Variable.woff2", weight: "100 900" }],
     download: "https://www.fontshare.com/fonts/general-sans",
   },
   {
@@ -64,7 +64,7 @@ export const CANDIDATES: Candidate[] = [
     foundry: "Indian Type Foundry",
     license: "ITF Free Font License",
     source: "fontshare",
-    file: "Satoshi-Variable.woff2",
+    files: [{ name: "Satoshi-Variable.woff2", weight: "100 900" }],
     download: "https://www.fontshare.com/fonts/satoshi",
   },
   {
@@ -73,7 +73,7 @@ export const CANDIDATES: Candidate[] = [
     foundry: "Indian Type Foundry",
     license: "ITF Free Font License",
     source: "fontshare",
-    file: "Switzer-Variable.woff2",
+    files: [{ name: "Switzer-Variable.woff2", weight: "100 900" }],
     download: "https://www.fontshare.com/fonts/switzer",
   },
   {
@@ -82,7 +82,11 @@ export const CANDIDATES: Candidate[] = [
     foundry: "Eigil Nikolajsen",
     license: "SIL OFL 1.1",
     source: "github",
-    file: "CommitMono-Variable.woff2",
+    // download "para dev" do commitmono.com: estáticos em .otf (o variável só vem no "para design")
+    files: [
+      { name: "CommitMono-400-Regular.otf", weight: "400" },
+      { name: "CommitMono-700-Regular.otf", weight: "700" },
+    ],
     download: "https://commitmono.com",
   },
   {
