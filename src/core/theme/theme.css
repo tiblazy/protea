@@ -1,0 +1,181 @@
+/* Protea · ponte entre os tokens e o Tailwind/shadcn.
+   Só aponta para as variáveis de tokens.css (fonte única, valores intactos).
+   Os poucos valores literais daqui são os que o DS define fora de :root (texto do botão
+   principal em cada tema) e o branco/preto do Tailwind, usados com opacidade no vidro. */
+
+/* Todas as telas são escuras nos dois temas: o `dark:` do shadcn vale sempre. */
+@custom-variant dark (&:where(html, html *));
+
+@theme inline {
+  /* Sem a paleta padrão do Tailwind: cor só por token. */
+  --color-*: initial;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* base */
+  --color-breu: var(--breu);
+  --color-turfa: var(--turfa);
+  --color-musgo: var(--musgo);
+  --color-linha: var(--linha);
+  --color-borda: var(--borda);
+  --color-tx: var(--tx);
+  --color-tx2: var(--tx2);
+  --color-tx3: var(--tx3);
+
+  /* flor */
+  --color-protea: var(--protea);
+  --color-ponta: var(--ponta);
+  --color-miolo: var(--miolo);
+  --color-prata: var(--prata);
+  --color-ceu: var(--ceu);
+  --color-urze: var(--urze);
+  --color-folha: var(--folha);
+  --color-liquen: var(--liquen);
+  --color-vermelhao: var(--vermelhao);
+  --color-protea-cl: var(--protea-cl);
+  --color-miolo-cl: var(--miolo-cl);
+  --color-ceu-cl: var(--ceu-cl);
+  --color-urze-cl: var(--urze-cl);
+  --color-folha-cl: var(--folha-cl);
+  --color-liquen-cl: var(--liquen-cl);
+  --color-verm-cl: var(--verm-cl);
+  --color-perola: var(--perola);
+  --color-vinho: var(--vinho);
+  --color-sepala: var(--sepala);
+  --color-caule: var(--caule);
+  --color-tinta: var(--tinta);
+  --color-acento: var(--acento);
+
+  /* áreas, pelos nomes consolidados do código */
+  --color-area-agenda: var(--a-estacoes);
+  --color-area-notes: var(--a-herbario);
+  --color-area-projects: var(--a-estufa);
+  --color-area-crm: var(--a-sementeira);
+  --color-area-dev: var(--a-raizes);
+  --color-area-finance: var(--a-colheita);
+  --color-area-focus: var(--a-floracao);
+
+  /* vidro */
+  --color-vidro-borda: var(--vidro-borda);
+  --color-vidro-borda-hover: var(--vidro-borda-hover);
+  --color-vidro-interno: var(--vidro-interno);
+  --shadow-vidro: var(--vidro-sombra);
+
+  /* semânticas do shadcn (valores abaixo, em :root) */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* tipografia */
+  --font-sans: var(--f-ui);
+  --font-ui: var(--f-ui);
+  --font-disp: var(--f-disp);
+  --font-heading: var(--f-disp);
+  --font-mono: var(--f-mono);
+
+  /* raios (DS §4) */
+  --radius-chip: var(--r-chip);
+  --radius-btn: var(--r-btn);
+  --radius-item: var(--r-item);
+  --radius-card: var(--r-card);
+  --radius-pill: var(--r-pill);
+  --radius-sm: var(--r-chip);
+  --radius-md: var(--r-btn);
+  --radius-lg: var(--r-btn);
+  --radius-xl: var(--r-item);
+  --radius-2xl: var(--r-card);
+  --radius-3xl: var(--r-card);
+  --radius-4xl: var(--r-card);
+
+  /* movimento: a curva do modo; a duração vem de duration-(--dur) */
+  --ease-modo: var(--ease);
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+
+    /* fontes: liga os nomes de família do DS às fontes servidas pelo next/font
+       (o next/font gera nomes próprios, então "Sora" literal não acharia o arquivo) */
+    --f-disp: var(--font-sora), var(--font-inter), sans-serif;
+    --f-ui: var(--font-inter), system-ui, sans-serif;
+    --f-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+    /* semânticas do shadcn → tokens Protea; o tema troca só os tokens */
+    --background: var(--breu);
+    --foreground: var(--tx);
+    --card: var(--turfa);
+    --card-foreground: var(--tx);
+    --popover: var(--musgo);
+    --popover-foreground: var(--tx);
+    --primary: var(--protea);
+    --primary-foreground: #1e0a06; /* DS §2: texto do botão principal no Protea */
+    --secondary: var(--musgo);
+    --secondary-foreground: var(--tx);
+    --muted: var(--musgo);
+    --muted-foreground: var(--tx2);
+    --accent: var(--musgo);
+    --accent-foreground: var(--tx);
+    --destructive: var(--vermelhao);
+    --border: var(--linha);
+    --input: var(--linha);
+    --ring: var(--ponta);
+    /* PROVISÓRIO (aguarda aval da paleta de dados): cores de área do DS v4 */
+    --chart-1: var(--a-estufa);
+    --chart-2: var(--a-floracao);
+    --chart-3: var(--a-colheita);
+    --chart-4: var(--a-sementeira);
+    --sidebar: var(--turfa);
+    --sidebar-foreground: var(--tx);
+    --sidebar-primary: var(--protea);
+    --sidebar-primary-foreground: var(--primary-foreground);
+    --sidebar-accent: var(--musgo);
+    --sidebar-accent-foreground: var(--tx);
+    --sidebar-border: var(--borda);
+    --sidebar-ring: var(--ponta);
+  }
+
+  [data-theme="essencial"] {
+    --f-disp: var(--font-inter), system-ui, sans-serif; /* DS §10: só Inter */
+    --primary-foreground: #ffffff; /* DS §10: azul sólido, texto branco */
+  }
+
+  /* "Reduzir movimento" escolhido no app vale como o do sistema (regra 7) */
+  [data-motion="reduced"] *,
+  [data-motion="reduced"] *::before,
+  [data-motion="reduced"] *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  * {
+    @apply border-border outline-ring/50;
+  }
+}

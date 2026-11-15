@@ -1,0 +1,121 @@
+/* Protea · utilities de vidro, texturas e rótulo (DS §3 e §5).
+   Mesmos valores das classes .g, .tx-* e .lbl de tokens.css, como @utility para o JSX
+   não repetir dez classes. Texturas somem no tema Essencial (DS §10). */
+
+/* vidro: padrão de todo cartão, com o pontilhado de pólen por cima */
+@utility glass {
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  border-radius: var(--r-card);
+  background: var(--vidro-bg);
+  border: 1px solid var(--vidro-borda);
+  box-shadow: var(--vidro-sombra);
+  backdrop-filter: var(--vidro-blur);
+  -webkit-backdrop-filter: var(--vidro-blur);
+  transition: border-color var(--dur) var(--ease);
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background-image: radial-gradient(rgba(237, 230, 227, 0.05) 0.7px, transparent 1.1px);
+    background-size: 5px 5px;
+  }
+  & > * {
+    position: relative;
+    z-index: 1;
+  }
+  :where([data-theme="essencial"]) &::after {
+    display: none;
+  }
+}
+
+/* cartão que reage ao mouse: só a borda clareia, o cartão não se move */
+@utility glass-interactive {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      border-color: var(--vidro-borda-hover);
+    }
+  }
+}
+
+/* vidro interno: campos e trilhos */
+@utility glass-inner {
+  background: var(--vidro-interno);
+}
+
+/* texturas da flor (opacidade máx. .18) */
+@utility tx-polen {
+  background-image: radial-gradient(rgba(237, 230, 227, 0.08) 0.8px, transparent 1.2px);
+  background-size: 5px 5px;
+  :where([data-theme="essencial"]) & {
+    background-image: none;
+  }
+}
+
+@utility tx-veio {
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: repeating-radial-gradient(
+      ellipse 60% 120% at 50% 118%,
+      transparent 0 13px,
+      rgba(134, 164, 114, 0.09) 13px 14px
+    );
+  }
+  :where([data-theme="essencial"]) &::before {
+    display: none;
+  }
+}
+
+@utility tx-fibra {
+  background-image:
+    repeating-linear-gradient(102deg, rgba(255, 255, 255, 0.1) 0 1px, transparent 1px 6px),
+    repeating-linear-gradient(78deg, rgba(0, 0, 0, 0.1) 0 1px, transparent 1px 9px);
+  :where([data-theme="essencial"]) & {
+    background-image: none;
+  }
+}
+
+@utility tx-miolo {
+  background-image:
+    radial-gradient(circle, rgba(70, 40, 5, 0.4) 1.3px, transparent 1.8px),
+    radial-gradient(circle, rgba(255, 240, 200, 0.35) 0.8px, transparent 1.2px);
+  background-size: 8px 8px, 8px 8px;
+  background-position: 0 0, 4px 4px;
+  :where([data-theme="essencial"]) & {
+    background-image: none;
+  }
+}
+
+@utility tx-pelo {
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.5) 0.7px, transparent 1.1px),
+    radial-gradient(rgba(0, 0, 0, 0.08) 0.7px, transparent 1.1px);
+  background-size: 4px 4px, 6px 6px;
+  background-position: 0 0, 2px 3px;
+  :where([data-theme="essencial"]) & {
+    background-image: none;
+  }
+}
+
+@utility tx-prata {
+  background-image: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.3) 0 1px, transparent 1px 3px);
+  :where([data-theme="essencial"]) & {
+    background-image: none;
+  }
+}
+
+/* rótulo: caixa alta só via CSS (DS §9) */
+@utility lbl {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--tx2);
+}

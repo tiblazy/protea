@@ -1,0 +1,148 @@
+/* Protea · tokens v4 · cores "Protea-rei noturna" (resto do sistema = v3 vidro)
+   Fonte da verdade dos valores. Regras de uso: docs/DESIGN-SYSTEM.md
+   Modo: <html data-mode="orvalho"> ou <html data-mode="seiva">
+   Tema: <html data-theme="protea"> ou <html data-theme="essencial"> */
+
+:root{
+  /* base */
+  --breu:#0F0D0B; --turfa:#181512; --musgo:#24201B; --linha:#3A332C; --borda:#2C2721;
+  --tx:#EDE6E3; --tx2:#C2B6B2; --tx3:#9C8D81;
+
+  /* flor */
+  --protea:#D9604C; --ponta:#F2C4B5; --miolo:#8D97CF; --prata:#C2B6B2;
+  --ceu:#E8A38F; --urze:#C8C267; --folha:#86A472; --liquen:#B07B5E; --vermelhao:#F0524F;
+  /* versões claras para texto colorido sobre vidro */
+  --protea-cl:#F2C4B5; --miolo-cl:#D3D8F0; --ceu-cl:#F6D6CC; --urze-cl:#E6E3B5; --folha-cl:#D5E2CB; --liquen-cl:#E7CDBF; --verm-cl:#FBD3D0;
+  /* nomes da flor (aliases) */
+  --perola:#EDE6E3; --vinho:#7F251C; --sepala:#C8C267; --caule:#B07B5E; --tinta:#13110B;
+
+  /* áreas → cor */
+  --a-estacoes:var(--ceu); --a-herbario:var(--prata); --a-estufa:var(--protea); --a-sementeira:var(--urze);
+  --a-raizes:var(--liquen); --a-colheita:var(--folha); --a-floracao:var(--miolo);
+
+  /* gradientes */
+  --nacar:linear-gradient(135deg,#EDE6E3 0%,#E8A38F 28%,#D9604C 55%,#9E3324 80%,#8D97CF 100%); /* "bráctea": pérola → rosa → coral → vinho → toque de miolo */
+  --nacar-curto:linear-gradient(95deg,#F2C4B5,#D9604C 55%,#B23F2E);
+  --ativo:linear-gradient(95deg,rgba(217,96,76,.26),rgba(217,96,76,.08));
+  --fundo-app:
+    radial-gradient(760px 520px at 42% -8%,rgba(217,96,76,.20),transparent 62%),
+    radial-gradient(640px 520px at 104% 40%,rgba(141,151,207,.13),transparent 60%),
+    radial-gradient(700px 560px at 6% 104%,rgba(134,164,114,.15),transparent 62%),
+    radial-gradient(500px 380px at 70% 112%,rgba(237,230,227,.06),transparent 60%),
+    linear-gradient(180deg,#14110E,#0B0908);
+
+  /* vidro */
+  --vidro-bg:linear-gradient(140deg,rgba(255,255,255,.10),rgba(255,255,255,.03) 45%,rgba(255,255,255,.055));
+  --vidro-borda:rgba(255,255,255,.15);
+  --vidro-borda-hover:rgba(255,255,255,.22);
+  --vidro-sombra:inset 0 1px 0 rgba(255,255,255,.26),inset 1px 0 0 rgba(255,255,255,.07),0 24px 60px rgba(0,0,0,.45);
+  --vidro-blur:blur(22px) saturate(140%);
+  --vidro-interno:rgba(0,0,0,.22);
+
+  /* tipografia */
+  --f-disp:Sora,Inter,sans-serif; --f-ui:Inter,system-ui,sans-serif; --f-mono:"JetBrains Mono",ui-monospace,monospace;
+
+  /* espaço (base 4) */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:20px; --s6:24px; --s10:40px;
+  --menu-w:236px;
+
+  /* raios */
+  --r-chip:8px; --r-btn:12px; --r-item:16px; --r-card:22px; --r-pill:999px;
+
+  /* movimento (Orvalho por padrão) */
+  --dur:700ms; --ease:cubic-bezier(.4,0,.2,1);
+  --dur-troca-modo:1200ms;
+  --acento:var(--folha);
+}
+[data-mode="seiva"]{
+  --dur:220ms; --ease:cubic-bezier(.2,.8,.2,1.12);
+  --acento:var(--protea);
+  --vidro-bg:linear-gradient(140deg,rgba(255,255,255,.13),rgba(255,255,255,.04) 45%,rgba(255,255,255,.07));
+}
+
+body{margin:0;background:var(--breu);color:var(--tx);font-family:var(--f-ui);font-feature-settings:"tnum" 1;-webkit-font-smoothing:antialiased}
+.app-fundo{background:var(--fundo-app);transition:background var(--dur-troca-modo) var(--ease)}
+
+/* vidro */
+.g{position:relative;overflow:hidden;box-sizing:border-box;border-radius:var(--r-card);background:var(--vidro-bg);border:1px solid var(--vidro-borda);box-shadow:var(--vidro-sombra);backdrop-filter:var(--vidro-blur);-webkit-backdrop-filter:var(--vidro-blur);transition:border-color var(--dur) var(--ease)}
+.g:hover{border-color:var(--vidro-borda-hover)}
+.g:after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;background-image:radial-gradient(rgba(237,230,227,.05) .7px,transparent 1.1px);background-size:5px 5px}
+.g > *{position:relative;z-index:1}
+
+/* tema Essencial: paleta e tipografia padrão (zinco + azul), sem mascote e sem texturas da flor */
+[data-theme="essencial"]{
+  --breu:#0A0B0E; --turfa:#18181B; --musgo:#27272A; --linha:#3F3F46; --borda:#27272A;
+  --tx:#F4F4F5; --tx2:#A1A1AA; --tx3:#71717A;
+  --protea:#3B82F6; --ponta:#93C5FD; --miolo:#F59E0B; --prata:#A1A1AA;
+  --ceu:#38BDF8; --urze:#818CF8; --folha:#34D399; --liquen:#2DD4BF; --vermelhao:#EF4444;
+  --protea-cl:#BFDBFE; --miolo-cl:#FDE68A; --ceu-cl:#BAE6FD; --urze-cl:#C7D2FE; --folha-cl:#A7F3D0; --liquen-cl:#99F6E4; --verm-cl:#FECACA;
+  --nacar:linear-gradient(135deg,#93C5FD,#3B82F6);
+  --nacar-curto:#3B82F6;
+  --ativo:rgba(59,130,246,.16);
+  --fundo-app:radial-gradient(900px 520px at 50% -20%,rgba(59,130,246,.10),transparent 60%),linear-gradient(180deg,#111318,#0A0B0E);
+  --vidro-bg:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));
+  --vidro-borda:rgba(255,255,255,.10);
+  --vidro-sombra:inset 0 1px 0 rgba(255,255,255,.08),0 16px 40px rgba(0,0,0,.4);
+  --f-disp:Inter,system-ui,sans-serif;
+}
+[data-theme="essencial"] .p-pri{color:#FFFFFF}
+[data-theme="essencial"] .titulo{text-transform:none;letter-spacing:-.025em}
+[data-theme="essencial"] .num{font-weight:500;letter-spacing:-.02em}
+[data-theme="essencial"] .hm i.h1{background:#172554}[data-theme="essencial"] .hm i.h2{background:#1E3A8A}[data-theme="essencial"] .hm i.h3{background:#2563EB}[data-theme="essencial"] .hm i.h4{background:#3B82F6;box-shadow:0 0 8px rgba(59,130,246,.5)}
+[data-theme="essencial"] .g:after,[data-theme="essencial"] .tx-veio:before{display:none}
+[data-theme="essencial"] .so-protea{display:none !important}
+[data-theme="protea"] .so-essencial{display:none !important}
+
+/* texturas da flor (opacidade máx. .18) */
+.tx-polen{background-image:radial-gradient(rgba(237,230,227,.08) .8px,transparent 1.2px);background-size:5px 5px}
+.tx-veio:before{content:"";position:absolute;inset:0;pointer-events:none;background-image:repeating-radial-gradient(ellipse 60% 120% at 50% 118%,transparent 0 13px,rgba(134,164,114,.09) 13px 14px)}
+.tx-fibra{background-image:repeating-linear-gradient(102deg,rgba(255,255,255,.10) 0 1px,transparent 1px 6px),repeating-linear-gradient(78deg,rgba(0,0,0,.10) 0 1px,transparent 1px 9px)}
+.tx-miolo{background-image:radial-gradient(circle,rgba(70,40,5,.40) 1.3px,transparent 1.8px),radial-gradient(circle,rgba(255,240,200,.35) .8px,transparent 1.2px);background-size:8px 8px,8px 8px;background-position:0 0,4px 4px}
+.tx-pelo{background-image:radial-gradient(rgba(255,255,255,.5) .7px,transparent 1.1px),radial-gradient(rgba(0,0,0,.08) .7px,transparent 1.1px);background-size:4px 4px,6px 6px;background-position:0 0,2px 3px}
+.tx-prata{background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.30) 0 1px,transparent 1px 3px)}
+
+/* tipografia */
+.lbl{font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--tx2)}
+.titulo{font-family:var(--f-disp);font-weight:700;font-size:54px;line-height:.98;letter-spacing:.01em;text-transform:uppercase}
+.titulo em{font-style:normal;background:var(--nacar-curto);-webkit-background-clip:text;background-clip:text;color:transparent}
+.num{font-family:var(--f-disp);font-weight:300;letter-spacing:-.01em}
+.mono{font-family:var(--f-mono)}
+
+/* botões */
+.pill{height:38px;box-sizing:border-box;border-radius:var(--r-pill);display:inline-flex;align-items:center;gap:8px;padding:0 15px;font:700 10.5px var(--f-ui);letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;text-decoration:none;transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
+.p-pri{background:var(--nacar-curto);color:#1E0A06;border:1px solid rgba(255,255,255,.45);box-shadow:0 10px 26px rgba(217,96,76,.32),inset 0 1px 0 rgba(255,255,255,.6)}
+.p-sec{border:1px solid rgba(255,255,255,.26);color:var(--tx);background:rgba(255,255,255,.04)}
+.circ{width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.05);display:inline-flex;align-items:center;justify-content:center}
+[data-mode="seiva"] .pill:hover{transform:translateY(-1px)}
+:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(242,196,181,.35)}
+
+/* chips e status */
+.chip{display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:var(--r-chip);border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.03);font-size:10.5px;font-weight:600;letter-spacing:.08em;color:var(--tx2);white-space:nowrap}
+.chip.on{background:rgba(242,196,181,.14);border-color:rgba(242,196,181,.45);color:var(--ponta)}
+.st{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 9px;border-radius:11px;font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border:1px solid;white-space:nowrap}
+.st i{width:6px;height:6px;border-radius:50%}
+.st.ceu{color:var(--ceu-cl);background:rgba(232,163,143,.14);border-color:rgba(232,163,143,.4)}.st.ceu i{background:var(--ceu)}
+.st.miolo{color:var(--miolo-cl);background:rgba(141,151,207,.14);border-color:rgba(141,151,207,.4)}.st.miolo i{background:var(--miolo)}
+.st.folha{color:var(--folha-cl);background:rgba(134,164,114,.14);border-color:rgba(134,164,114,.4)}.st.folha i{background:var(--folha)}
+.st.urze{color:var(--urze-cl);background:rgba(200,194,103,.14);border-color:rgba(200,194,103,.4)}.st.urze i{background:var(--urze)}
+.st.verm{color:var(--verm-cl);background:rgba(240,82,79,.14);border-color:rgba(240,82,79,.45)}.st.verm i{background:var(--vermelhao)}
+.st.cinza{color:var(--tx);border-color:rgba(194,182,178,.35)}.st.cinza i{background:var(--tx2)}
+
+/* mapa de calor (Anéis) */
+.hm i{display:block;border-radius:3px;background:rgba(255,255,255,.05)}
+.hm i.h1{background:#3A1712}.hm i.h2{background:#6B2419}.hm i.h3{background:#A63F2F}.hm i.h4{background:#D9604C;box-shadow:0 0 8px rgba(217,96,76,.5)}
+
+/* movimento */
+@keyframes respira{0%,100%{transform:scale(.96);opacity:.75}40%{transform:scale(1.03);opacity:1}}  /* Orvalho, 10s */
+@keyframes nucleo{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}                           /* Seiva, 3.2s */
+@keyframes orbita{to{transform:rotate(360deg)}}                                                     /* Seiva, 16s */
+@keyframes fita{to{stroke-dashoffset:-200}}                                                         /* Seiva, 3.5s */
+@keyframes flutua{50%{transform:translateY(-7px)}}                                                  /* Protea, 7s */
+@keyframes balanca{0%,100%{transform:rotate(-1.5deg)}50%{transform:rotate(1.5deg)}}                 /* coroa, 9s */
+@keyframes joia{0%,100%{opacity:.75}50%{opacity:1}}                                                 /* joia, 4s */
+@keyframes entra{from{transform:translateY(8px);opacity:0}}                                         /* cartões, var(--dur), escalonar 40ms */
+
+/* regra 7 de "Seiva sem cansar" */
+@media (prefers-reduced-motion: reduce){*,*:before,*:after{animation:none !important;transition:none !important}}
+/* regra 6: o app adiciona .pausado ao <html> após 90 min ou com a janela fora de foco */
+.pausado *{animation-play-state:paused !important}

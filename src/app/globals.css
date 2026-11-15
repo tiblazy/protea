@@ -1,0 +1,9 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* tokens.css é cópia fiel de design/tokens/protea.css (confira com `pnpm tokens:check`).
+   Entra na camada base para as utilities do Tailwind poderem sobrescrever as classes legadas. */
+@import "../core/theme/tokens.css" layer(base);
+@import "../core/theme/theme.css";
+@import "../core/theme/utilities.css";
