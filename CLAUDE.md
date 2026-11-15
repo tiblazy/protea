@@ -8,6 +8,7 @@ Protea é o espaço de trabalho único de uma dev freelancer: projetos e tarefas
 2. Leia a seção da área em [`docs/AREAS.md`](docs/AREAS.md): nome, cor, subseções, conteúdo e dados de exemplo.
 3. Abra a tela da área em `telas-final/` (versão final de cada tela) e a referência interativa [`design/referencia/jardim.html`](design/referencia/jardim.html). Toda tela nova herda dela a moldura, o menu, a barra do topo e o tratamento dos cartões.
 4. Use os tokens de [`design/tokens/protea.css`](design/tokens/protea.css). Uma cor, raio, duração ou sombra que não esteja ali vira token primeiro, depois é usada.
+5. No código, siga [`docs/PLANO-FRONTEND.md`](docs/PLANO-FRONTEND.md): estrutura por feature, limites entre módulos, ordem das fases e o processo de construção de cada tela.
 
 ## Regras que não mudam
 
