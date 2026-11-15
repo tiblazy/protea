@@ -3,9 +3,11 @@
  * Só para avaliação: a fonte escolhida entra depois por next/font/local, numa mudança do DS.
  *
  * Licenças conferidas em 15 nov 2026:
- * - Fontshare (Indian Type Foundry): ITF Free Font License — uso pessoal e comercial grátis,
- *   inclusive web; restringe redistribuir os arquivos. Por isso os .woff2 da prova ficam fora
- *   do Git (public/fonts/prova/ está no .gitignore). Confira o EULA que vem no .zip.
+ * - Fontshare (Indian Type Foundry): ITF Free Font License 2.0 (17 ago 2026, lida no .zip).
+ *   Permite uso comercial e self-hosting via @font-face nos próprios sites e apps.
+ *   Proíbe redistribuir (inclusive em repositório ou servidor público), modificar, fazer subset
+ *   ou converter formato. Por isso os .woff2 ficam fora do Git (public/fonts/prova/ no .gitignore)
+ *   e são usados como vieram, sem subset.
  * - Unbounded, Geist Mono e Commit Mono: SIL Open Font License 1.1.
  */
 
