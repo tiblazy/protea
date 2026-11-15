@@ -21,6 +21,12 @@ Protea é o espaço de trabalho único de uma dev freelancer: projetos e tarefas
 - **Acessibilidade**: contraste AA para todo texto; status sempre com ponto + texto, nunca só cor; gráficos com `aria-label`.
 - **Personagem**: a Protea é o rosto holográfico em `design/marca/protea-holo.png`, que segue o mouse (ver DESIGN-SYSTEM §7). Mantenha-a isolada num componente próprio. Não copie personagens, marcas ou arte de terceiros, nem das imagens em `references/`.
 
+## Git
+
+- **Nunca commitar na `main`.** Todo trabalho acontece numa branch própria (`feat/<feature>`).
+- **A `main` só recebe uma feature quando ela termina e depois que eu a avalio e aprovo.** O merge nunca é feito por conta própria.
+- **Push só na branch da feature.** Nunca para a `main` nem para a branch de outra feature.
+
 ## Marca
 
 A logo é a protea-rei em `design/marca/protea-logo.png` (sem fundo). A ilustração original está em `references/08-protea-rei-logo.png`.
